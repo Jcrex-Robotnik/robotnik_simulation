@@ -195,7 +195,7 @@ def generate_launch_description():
         }.items(),
     )
 
-    delayed_navigation = TimerAction(period=15.0, actions=[navigation])
+    delayed_navigation = TimerAction(period=25.0, actions=[navigation])
 
     rviz = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
