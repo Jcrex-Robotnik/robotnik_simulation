@@ -90,6 +90,11 @@ def generate_launch_description():
             default_value="false",
             description="Enable Arm Controller",
         ),
+        DeclareLaunchArgument(
+            "run_mapping",
+            default_value="false",
+            description="Run 2D mapping (SLAM) instead of localization",
+        ),
     ]
 
     robot_id = LaunchConfiguration("robot_id")
@@ -100,6 +105,7 @@ def generate_launch_description():
     world_path = LaunchConfiguration("world_path")
     use_rviz = LaunchConfiguration("use_rviz")
     has_arm = LaunchConfiguration("has_arm")
+    run_mapping = LaunchConfiguration("run_mapping")
 
     gazebo_world = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -175,6 +181,7 @@ def generate_launch_description():
         launch_arguments={
             "robot_id": robot_id,
             "use_sim": "true",
+            "run_mapping": run_mapping,
         }.items(),
     )
 

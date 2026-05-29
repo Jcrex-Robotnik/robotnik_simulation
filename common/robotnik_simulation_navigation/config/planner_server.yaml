@@ -21,69 +21,11 @@
         footprint_padding: 0.05
         resolution: 0.05
         track_unknown_space: true
-        plugins: ["static_layer", "stvl_layer", "inflation_layer"]
+        plugins: ["static_layer", "inflation_layer"]
         static_layer:
           map_topic: /robot/map
           plugin: "nav2_costmap_2d::StaticLayer"
           map_subscribe_transient_local: true
-        stvl_layer:
-          plugin: "spatio_temporal_voxel_layer/SpatioTemporalVoxelLayer"
-          enabled: true
-          footprint_clearing_enabled: true
-          voxel_decay: 1.0
-          decay_model: 0
-          voxel_size: 0.05
-          track_unknown_space: true
-          mark_threshold: 0
-          update_footprint_enabled: true
-          combination_method: 1
-          origin_z: 0.0
-          publish_voxel_map: true
-          transform_tolerance: 0.3
-          mapping_mode: false
-          map_save_duration: 60.0
-          observation_sources: depth_camera vlm_obstacles
-          depth_camera:
-            data_type: PointCloud2
-            topic: /robot/front_rgbd_camera/depth/points
-            marking: true
-            clearing: true
-            obstacle_range: 5.0
-            obstacle_min_range: 0.6
-            min_obstacle_height: 0.2
-            max_obstacle_height: 2.0
-            expected_update_rate: 0.0
-            observation_persistence: 0.0
-            inf_is_valid: false
-            filter: "voxel"
-            voxel_min_points: 2
-            clear_after_reading: true
-            min_z: 0.2
-            max_z: 2.5
-            vertical_fov_angle: 1.012
-            horizontal_fov_angle: 1.518
-            decay_acceleration: 5.0
-            model_type: 0
-          vlm_obstacles:
-            data_type: PointCloud2
-            topic: /vlm_detected_obstacles
-            marking: true
-            clearing: false
-            obstacle_range: 12.0
-            min_obstacle_height: 0.0
-            max_obstacle_height: 2.0
-            expected_update_rate: 0.0
-            observation_persistence: 1.0
-            inf_is_valid: false
-            filter: "passthrough"
-            voxel_min_points: 0
-            clear_after_reading: false
-            min_z: 0.0
-            max_z: 2.5
-            vertical_fov_angle: 1.012
-            horizontal_fov_angle: 1.518
-            decay_acceleration: 0.0
-            model_type: 0
         inflation_layer:
           plugin: "nav2_costmap_2d::InflationLayer"
           cost_scaling_factor: 4.00
